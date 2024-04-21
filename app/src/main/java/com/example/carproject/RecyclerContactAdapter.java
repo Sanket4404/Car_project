@@ -1,6 +1,7 @@
 package com.example.carproject;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +21,7 @@ public class RecyclerContactAdapter extends RecyclerView.Adapter<RecyclerContact
 
     public RecyclerContactAdapter(Context context, ArrayList<book_ride_1_model> arrContacts) {
         this.context = context;
-        this.arrContacts = arrContacts; // Correctly initializing the member variable.
+        this.arrContacts = arrContacts;
     }
 
     @NonNull
@@ -33,9 +34,21 @@ public class RecyclerContactAdapter extends RecyclerView.Adapter<RecyclerContact
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         book_ride_1_model modal = arrContacts.get(position);
-        holder.imgView.setImageResource(modal.getImg()); // Assuming getters are present in your model.
+        holder.imgView.setImageResource(modal.getImg());
         holder.txtNum.setText(modal.getAddress());
         holder.txtContact.setText(modal.getName());
+
+        // Click listener for each item
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, book_ride_2.class);
+                intent.putExtra("img", modal.getImg());
+                intent.putExtra("name", modal.getName());
+                intent.putExtra("address", modal.getAddress());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

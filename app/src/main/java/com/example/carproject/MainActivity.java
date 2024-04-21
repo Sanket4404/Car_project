@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
         recycle.setLayoutManager(new LinearLayoutManager(this));
 
         // Efficient way to add models to the list using Arrays.asList
-        // Name of Driver
+
         arrcontact = new ArrayList<>(Arrays.asList(
                 new book_ride_1_model(R.drawable.a, "A", "College Road"),
                 new book_ride_1_model(R.drawable.b, "B", "College Road"),
@@ -45,5 +45,10 @@ public class MainActivity extends AppCompatActivity {
 
         RecyclerContactAdapter adapter = new RecyclerContactAdapter(this, arrcontact);
         recycle.setAdapter(adapter);
+
+
     }
+
+
 }
+
