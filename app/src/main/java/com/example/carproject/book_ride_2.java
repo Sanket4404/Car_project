@@ -66,6 +66,18 @@ public class book_ride_2 extends AppCompatActivity {
         });
 
 
+        btnwhatsapp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String wpurl = "https://wa.me/+911234567890?text=Hello,I want to join a ride.";
+                Intent iwp = new Intent(Intent.ACTION_VIEW);
+                iwp.setData(Uri.parse(wpurl));
+                startActivity(iwp);
+
+            }
+        });
+
 
 
 
