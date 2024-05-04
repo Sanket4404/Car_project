@@ -1,12 +1,17 @@
 package com.example.carproject;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class book_ride_2 extends AppCompatActivity {
+    Button btnwhatsapp,btnmsg,btndial;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,6 +21,9 @@ public class book_ride_2 extends AppCompatActivity {
         ImageView imgView = findViewById(R.id.image_view);
         TextView txtName = findViewById(R.id.text_name);
         TextView txtAddress = findViewById(R.id.text_address);
+        btndial = findViewById(R.id.btndial);
+        btnmsg = findViewById(R.id.btnmsg);
+        btnwhatsapp  = findViewById(R.id.btnwhatsapp);
 
         // Receive the intent from RecyclerContactAdapter and update the views
         int imgId = getIntent().getIntExtra("img", -1); // Default value as -1 if no image provided
@@ -28,5 +36,41 @@ public class book_ride_2 extends AppCompatActivity {
         }
         txtName.setText(name);
         txtAddress.setText(address);
+
+
+
+
+        btndial.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent idial = new Intent(Intent.ACTION_DIAL);
+                idial.setData(Uri.parse("tel: +911234567890"));
+                startActivity(idial);
+
+
+            }
+        });
+
+
+        btnmsg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent imsg = new Intent(Intent.ACTION_SENDTO);
+                imsg.setData(Uri.parse("smsto:"+Uri.encode("+915555555555")));
+                imsg.putExtra("sms_body"," Please solve this issue. ");
+                startActivity(imsg);
+
+            }
+        });
+
+
+
+
+
     }
+
+
+
 }
